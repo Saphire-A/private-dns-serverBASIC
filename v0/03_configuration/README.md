@@ -47,6 +47,7 @@ Expected Output:
 
 ;; ANSWER SECTION:
 example.test.     0     IN     A     192.168.0.100
+
 If dig is not installed:
 
 ```bash
