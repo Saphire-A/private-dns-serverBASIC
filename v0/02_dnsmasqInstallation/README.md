@@ -10,7 +10,7 @@ To install the `dnsmasq` service on Ubuntu which will act as our lightweight DNS
 ```bash
 sudo apt update
 sudo apt install dnsmasq
-````
+```
 
 ---
 
@@ -20,7 +20,7 @@ You can verify that `dnsmasq` is running using either of the following:
 
 ### Method 1 – Using `ps`:
 
----bash
+```bash
 ps aux | grep dnsmasq
 
 
@@ -82,12 +82,10 @@ sudo systemctl status systemd-resolved
 ```
 
 **Result:**
-
-```
 ● systemd-resolved.service - Network Name Resolution
      Loaded: loaded (...)
      Active: inactive (dead)
-```
+
 
  `systemd-resolved` was **disabled**, so it did not interfere with `dnsmasq`.
 If it were active, it might occupy port 53 and cause conflicts.

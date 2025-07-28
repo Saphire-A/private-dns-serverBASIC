@@ -1,70 +1,83 @@
-# Step 03 - DNSMasq Configuration
+## Step 03 - DNSMasq Configuration
 
-## Objective
-To configure `dnsmasq` to resolve a custom domain name (like `example.test`) to a local IP address (`192.168.0.100`) using a private DNS setup.
+# Objective
+Configure dnsmasq to resolve a custom domain name (like example.test) to a local IP address (192.168.0.100) as part of your private DNS setup.
 
----
+# Files Modified
+/etc/dnsmasq.conf
 
-## Files Modified
+Main configuration file for dnsmasq.
+⚠️ Do NOT rename or move this file.
 
-`/etc/dnsmasq.conf`  
-> This is the main configuration file for `dnsmasq`.  
-> **Do NOT rename or move this file.**
-
----
-
-## Step-by-Step Configuration
-
+# Step-by-Step Configuration
 1. Edit the dnsmasq config file
-
-Run this command in terminal:
-```bash
+bash
 sudo nano /etc/dnsmasq.conf
-
 
 2. Add the custom DNS entry
 Scroll to the bottom of the file and add:
 
+bash
 address=/example.test/192.168.0.100
-Do NOT use #address=... — the # symbol will comment out the line.
-We switched from .local to .test to avoid conflicts with mDNS (Multicast DNS).
+
+🔸 Do NOT use #address=... — the # symbol comments the line.
+🔸 Using .test instead of .local avoids Multicast DNS (mDNS) conflicts.
 
 To save and exit Nano:
-Press Ctrl + O, then Enter to save
-Press Ctrl + X to exit
+
+Press Ctrl + O, then Enter (Save)
+
+Press Ctrl + X (Exit)
 
 3. Restart the dnsmasq service
+```bash
 sudo systemctl restart dnsmasq
-Be careful typing systemctl — don’t confuse lowercase L with the number 1.
+```
+
+⚠️ Be careful typing systemctl — don’t confuse lowercase L with the number 1.
 
 4. Test DNS Resolution
-Option A: Using dig
+
+4.1 Using dig
+```bash
 dig example.test @127.0.0.1
+```
+
 Expected Output:
 
 ;; ANSWER SECTION:
 example.test.     0     IN     A     192.168.0.100
 If dig is not installed:
 
+```bash
 sudo apt install dnsutils
-Option B: Using ping
+```
 
+
+4.2 Using ping
+```bash
 ping example.test
-If successful, this should resolve to 192.168.0.100.
+```
+If it resolves to 192.168.0.100, your configuration is working!
 
-Warnings & Tips
+⚠️ Warnings & Tips
 .local domains are reserved for Multicast DNS (mDNS).
-So:
 
-dig example.local may work (because it directly queries your DNS)
-But ping example.local may fail, because the system tries mDNS first.
-Use .test, .home, or .lab for private/local domains.
-dig is better than ping for DNS testing because it talks directly to the DNS server, not the whole system resolver.
+Example:
+
+dig example.local may work.
+ping example.local might fail due to mDNS override.
+Recommended domains: .test, .home, .lab.
+dig is better than ping for DNS testing — it queries the DNS server directly.
 
 Final Confirmation
 Run:
+```bash
 ping example.test
+```
 If you see:
-PING example.test (192.168.0.100) ...
-Congratulations! Your private DNS with dnsmasq is working properly!
 
+```bash
+PING example.test (192.168.0.100) ...
+```
+🎉 Congratulations! Your private DNS with dnsmasq is working perfectly.
