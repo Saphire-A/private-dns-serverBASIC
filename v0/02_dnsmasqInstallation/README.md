@@ -13,7 +13,8 @@ sudo apt install dnsmasq
 ```
 
 ### Verifying Installation
-Method 1 – Using ps
+
+## Method 1 – Using ps
 ```bash
 ps aux | grep dnsmasq
 ```
