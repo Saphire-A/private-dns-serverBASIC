@@ -12,7 +12,7 @@ sudo apt update
 sudo apt install dnsmasq
 ```
 
-✅ Verifying Installation
+### Verifying Installation
 Method 1 – Using ps
 ```bash
 ps aux | grep dnsmasq
@@ -23,7 +23,7 @@ dnsmasq     1483  0.0  0.0  25740  3108 ?        S    17:38   0:00 /usr/sbin/dns
 practice    4105  0.0  0.0  17812  2208 pts/0    S+   19:39   0:00 grep --color=auto dnsmasq
 ```
 
-🔍 Method 2 – Using systemctl
+## Method 2 – Using systemctl
 ```bash
 sudo systemctl status dnsmasq
 ```
@@ -37,8 +37,8 @@ Jun 20 17:38:41 practice-VirtualBox dnsmasq[1483]: started, version 2.90 cachesi
 Jun 20 17:38:41 practice-VirtualBox dnsmasq[1483]: DNS service limited to local subnets
 Jun 20 17:38:41 practice-VirtualBox dnsmasq[1483]: read /etc/hosts - 8 names
 ⚠️ Note: Warnings about resolvconf or systemd-resolved can usually be ignored unless you're doing advanced DNS integration.
-
-📡 Verifying DNS Port 53
+```
+### Verifying DNS Port 53
 Check if dnsmasq is listening on the standard DNS port (53):
 
 ```bash
